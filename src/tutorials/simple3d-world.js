@@ -100,6 +100,10 @@ class BasicWorldDemo {
     this.RAF();
   }
 
+  clear() {
+    this.renderer.clear();
+  }
+
 }
 
 

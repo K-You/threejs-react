@@ -34,6 +34,10 @@ class SimpleCubeDemo {
     this.animate();
   }
 
+  clear() {
+    this.renderer.clear();
+  }
+
 }
 
 
