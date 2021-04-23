@@ -16,6 +16,7 @@ function BackgroundComponent() {
         <div>Martian Name : Tachi</div>
         <div>Holden Name : Rocinante</div>
         <div>Crew members : Alex, Naomi, Amos, Holden</div>
+        <div>Weapons : PDC, torpedos, raygun</div>
       </div>
       <div id="avatar" ref={tachiRef}></div>
     </div>

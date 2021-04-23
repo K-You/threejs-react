@@ -19,7 +19,7 @@ class Tachi {
     this.renderer.outputEncoding = THREE.sRGBEncoding;
 
     this.camera = new THREE.PerspectiveCamera( 75, ref.current.offsetWidth/ref.current.offsetHeight, 1.0, 1000 );
-    this.camera.position.set(75,20,0);
+    this.camera.position.set(75,60,-40);
     this.renderer.setSize(ref.current.offsetWidth, ref.current.offsetHeight)
     // document.body.appendChild( this.renderer.domElement );
     ref.current.appendChild(this.renderer.domElement);
@@ -33,6 +33,7 @@ class Tachi {
         c.castShadow = true;
       })
       gltf.scene.scale.setScalar(0.05, 0.05, 0.05);
+      gltf.scene.position.set(0, 30, 0);
       this.scene.add( gltf.scene );
     });
 
@@ -56,11 +57,24 @@ class Tachi {
     light = new THREE.AmbientLight(0xFFFFFF, 4.0);
     this.scene.add(light);
 
-    const controls = new OrbitControls(this.camera, this.renderer.domElement);
-    controls.target.set(0,20,0);
-    controls.update();
+    this.controls = new OrbitControls(this.camera, this.renderer.domElement);
+    this.controls.target.set(0,20,0);
+    this.controls.update();
+
+    window.addEventListener('scroll', (e) => {
+      this.onScroll(window.scrollY);
+    })
 
     this._RAF()
+  }
+
+  onScroll(pos) {
+    const a = 75;
+    const b = -75;
+    const amount = Math.min(pos / 1070.0, 1.0);
+    const result = a+amount*(b-a)
+    this.camera.position.set(result, 60, -40);
+    this.controls.update();
   }
 
   _RAF() {
@@ -79,9 +93,9 @@ class Tachi {
 
   _Step(timeElapsed) {
     const timeElapsedS = timeElapsed * 0.001;
-    if (this._mixers) {
-      this._mixers.map(m => m.update(timeElapsedS));
-    }
+    // if (this._mixers) {
+    //   this._mixers.map(m => m.update(timeElapsedS));
+    // }
 
     if (this._controls) {
       this._controls.Update(timeElapsedS);
