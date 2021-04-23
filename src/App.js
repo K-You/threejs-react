@@ -2,33 +2,40 @@ import { useEffect, useRef } from 'react';
 import { BrowserRouter as Router, Link, Route, Switch, useParams } from 'react-router-dom';
 import './App.css';
 import SpaceWorld from './space/space-world';
+import BackgroundComponent from './tutorials/background-model';
 import CharacterMovement from './tutorials/character-movement';
 import SimpleCubeDemo from './tutorials/simple-cube';
 import BasicWorldDemo from './tutorials/simple3d-world';
 
 function App() {
+  
   return (
     <Router>
-      <div>
-        <ul>
-          <li>
-            <Link to="/simple3d-cube">Simple cube</Link>
-          </li>
-          <li>
-            <Link to="/simple3d-world">Simple world</Link>
-          </li>
-          <li>
-            <Link to="/character-movement">Dancing character</Link>
-          </li>
-          <li>
-            <Link to="/space-world">Space battle</Link>
-          </li>
-        </ul>
-        <hr />
-        <Switch>
-          <Route path="/:path" children={<ThreeComponent/>} />
-        </Switch>
+      <div class="wrapper">
+        <nav class="route-nav">
+          <ul>
+            <li>
+              <Link to="/simple3d-cube">Simple cube</Link>
+            </li>
+            <li>
+              <Link to="/simple3d-world">Simple world</Link>
+            </li>
+            <li>
+              <Link to="/character-movement">Dancing character</Link>
+            </li>
+            <li>
+              <Link to="/space-world">Space battle</Link>
+            </li>
+            <li>
+              <Link to="/tachi">Tachi</Link>
+            </li>
+          </ul>
+        </nav>
       </div>
+      <Switch>
+        <Route path="/tachi" children={<BackgroundComponent/>} />
+        <Route path="/:path" children={<ThreeComponent/>} />
+      </Switch>
     </Router>
   );
 }
@@ -57,7 +64,7 @@ function ThreeComponent() {
         demo.current = (new SpaceWorld(threeRef));
         break;
       default: 
-      demo.current = (new SimpleCubeDemo(threeRef));  
+      demo.current = (new SimpleCubeDemo(threeRef));
     }
     if (demo.current != null){
       demo.current.start();

@@ -1,0 +1,25 @@
+.route-nav > ul {
+  display: flex;
+  justify-content: space-around;
+}
+
+li {
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:visited, a:link {
+  color : rgb(105, 103, 103);
+} 
+
+a:hover {
+  color : #000;
+} 
+
+.route-nav {
+  margin: 0px;
+  padding: 0px;
+}

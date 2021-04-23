@@ -1,0 +1,24 @@
+
+.wrapper {
+  display: grid;
+  grid-template-columns: 20% 70%;
+  grid-gap: 10%;
+  background-image: url("../assets/space.jpeg");
+}
+
+.tachi-information{
+  color: gray;
+  text-align: center;
+  vertical-align: center;
+  display: grid;
+  grid-template-columns: 100%;
+  place-items: center;
+}
+
+#avatar {
+  /* border: 1px solid white; */
+  height: 500px;
+  margin: 0px;
+  padding: 0px;
+}
+

@@ -100,7 +100,10 @@ class SpaceBoid {
     this.group.quaternion.setFromUnitVectors(new Vector3(0, 1, 0), this.Direction);
 
     this.visibilityIndex = this.game.visibilityGrid.updateItem(this.mesh.uuid, this, this.visibilityIndex);
-    this.game.thirdPersonCamera.update(timeInSeconds);
+    
+    if (this.game.thirdPersonCamera) {
+      this.game.thirdPersonCamera.update(timeInSeconds);
+    }
   }
 
   applySteering(timeInSeconds, local) {
