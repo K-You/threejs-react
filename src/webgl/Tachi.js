@@ -1,3 +1,4 @@
+import * as dat from 'dat.gui';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 const { GLTFLoader } = require('three/examples/jsm/loaders/GLTFLoader');
@@ -9,6 +10,7 @@ class Tachi {
   }
 
   initialize(ref) {
+    this.gui = new dat.GUI();
     
     this.renderer = new THREE.WebGLRenderer({antialias: true, alpha: true});
     this.renderer.setPixelRatio(window.devicePixelRatio);
@@ -27,12 +29,14 @@ class Tachi {
     this.scene = new THREE.Scene();
 
     const loaderGltf = new GLTFLoader();
-    loaderGltf.setPath('./resources/space/tachi/');
+    // loaderGltf.setPath('./resources/space/tachi/');
+    loaderGltf.setPath('./resources/tie-fighter/');
     loaderGltf.load('scene.gltf', (gltf) => {
       gltf.scene.traverse(c => {
         c.castShadow = true;
       })
-      gltf.scene.scale.setScalar(0.05, 0.05, 0.05);
+      // gltf.scene.scale.setScalar(0.05, 0.05, 0.05);
+      gltf.scene.scale.setScalar(5, 5, 5);
       gltf.scene.position.set(0, 30, 0);
       this.scene.add( gltf.scene );
     });
@@ -63,7 +67,7 @@ class Tachi {
 
     window.addEventListener('scroll', (e) => {
       this.onScroll(window.scrollY);
-    })
+    });
 
     this._RAF()
   }

@@ -1,3 +1,4 @@
+// import * as dat from 'dat.gui';
 import * as THREE from 'three';
 
 class SimpleCubeDemo {
@@ -6,8 +7,9 @@ class SimpleCubeDemo {
     this.initialize(ref);
   }
 
-
   initialize(ref) {
+    // this.gui = new dat.GUI();
+
     this.scene = new THREE.Scene();
     this.camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeight, 0.1, 1000 );
     this.renderer = new THREE.WebGLRenderer();
@@ -21,6 +23,12 @@ class SimpleCubeDemo {
     this.cube = new THREE.Mesh( geometry, material );
     this.scene.add( this.cube );
     this.camera.position.z = 5;
+
+    // const cameraFolder = this.gui.addFolder('Simple Cube controls');
+    // cameraFolder.add(this.camera.position, 'x', -10, 10, 1);
+    // cameraFolder.add(this.camera.position, 'y', -10, 10, 1);
+    // cameraFolder.add(this.camera.position, 'z', 0, 10, 1);
+    
   }
 
   animate() {
